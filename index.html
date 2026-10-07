@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ali Murtaza | DevOps & Cloud Engineer</title>
+<meta name="description" content="Ali Murtaza, DevOps and Cloud Engineer in Lahore. AWS, Azure, OCI, Kubernetes, Terraform, Ansible.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="nav">
+  <a class="logo" href="#top">am</a>
+  <nav>
+    <a href="#work">Work</a>
+    <a href="#projects">Projects</a>
+    <a href="#skills">Skills</a>
+    <a href="#certs">Certificates</a>
+    <a class="pill" href="#contact">Contact</a>
+  </nav>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="hero-text">
+      <p class="hello">Ali Murtaza, Lahore</p>
+      <h1>I keep cloud infrastructure up, fast and affordable.</h1>
+      <p class="lead">DevOps and Cloud Engineer running production sites on AWS, Azure and Kubernetes. I automate deployments, watch everything, and fix incidents before users notice.</p>
+      <div class="cta">
+        <a class="btn primary" href="#projects">See my projects</a>
+        <a class="btn" href="mailto:s.ali.murtaza1@gmail.com">Email me</a>
+      </div>
+    </div>
+
+    <aside class="board" aria-label="Sites Ali manages">
+      <div class="board-head"><span>Sites I look after</span><span class="all"><i></i>All systems operational</span></div>
+      <ul>
+        <li><b>quicklly.com</b><div class="bars" data-n="30"></div></li>
+        <li><b>zifiti.com</b><div class="bars" data-n="30"></div></li>
+        <li><b>prominencebank.com</b><div class="bars" data-n="30"></div></li>
+      </ul>
+      <div class="board-foot"><span>30 days ago</span><span>Uptime target 99.9%</span><span>Today</span></div>
+    </aside>
+  </section>
+
+  <section class="stats">
+    <div><strong>40%</strong><span>faster deployments</span></div>
+    <div><strong>20%</strong><span>lower cloud cost</span></div>
+    <div><strong>3</strong><span>production sites, solo on-call</span></div>
+    <div><strong>3</strong><span>cloud platforms: AWS, Azure, OCI</span></div>
+  </section>
+
+  <section id="work" class="section">
+    <h2>Where I work</h2>
+    <div class="timeline">
+      <article>
+        <div class="when">Dec 2024 to now</div>
+        <div>
+          <h3>Junior DevOps Engineer, AdMaxim Private Limited</h3>
+          <ul>
+            <li>Built monitoring and central logging with Zabbix, Prometheus and ELK for fast root cause analysis.</li>
+            <li>Replaced manual server setup and deployments with Ansible playbooks and Rundeck workflows.</li>
+            <li>Run high-availability Linux clusters: security patching, incident response, automated backups and disaster recovery.</li>
+          </ul>
+        </div>
+      </article>
+      <article>
+        <div class="when">Nov 2025 to now</div>
+        <div>
+          <h3>Site Reliability Engineer, Quicklly, Zifiti and Prominence Bank</h3>
+          <ul>
+            <li>Solely responsible for uptime of three major websites, with alerts tuned to catch failures immediately.</li>
+            <li>Primary contact for incidents; ship hotfixes over SSH and maintenance scripts across server clusters.</li>
+          </ul>
+        </div>
+      </article>
+      <article>
+        <div class="when">2020 to 2024</div>
+        <div>
+          <h3>BS Computer Science, University of Central Punjab</h3>
+          <p>Before that, ICS at Punjab College (2018 to 2020).</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="projects" class="section">
+    <h2>Projects</h2>
+    <div class="projects">
+      <article class="project big">
+        <h3>Secure enterprise WordPress</h3>
+        <p class="site">prominencebank.com</p>
+        <p>Hardened Linux host with strict firewall rules. Web and API layers are separated for security and scale. Developers reach servers through OpenVPN, and Teleport records every session for audit.</p>
+        <div class="tags"><span>Linux</span><span>OpenVPN</span><span>Teleport</span><span>Firewall</span></div>
+      </article>
+      <article class="project">
+        <h3>Multi-stack web infrastructure</h3>
+        <p class="site">GHS website</p>
+        <p>Windows Server IIS running Node.js and .NET, with AWS RDS in a private subnet and Redis caching. Bash scripts watch disk, IIS, RAM and CPU before slowdowns hit.</p>
+        <div class="tags"><span>IIS</span><span>AWS RDS</span><span>Redis</span><span>Bash</span></div>
+      </article>
+      <article class="project">
+        <h3>Kubernetes observability suite</h3>
+        <p class="site">Prometheus and Grafana</p>
+        <p>Deployed inside a K8s cluster with custom dashboards for node and pod metrics, so the health of every container is visible.</p>
+        <div class="tags"><span>Kubernetes</span><span>Prometheus</span><span>Grafana</span></div>
+      </article>
+    </div>
+  </section>
+
+  <section id="skills" class="section">
+    <h2>Skills</h2>
+    <div class="skills">
+      <div><h3>Cloud</h3><p>AWS: EC2, ELB, IAM, CloudWatch, EFS, S3, ECR, ECS, RDS, VPC<br>Azure: VMs, App Service, AKS, Blob, SQL, Functions, AD, DevOps<br>Oracle Cloud Infrastructure</p></div>
+      <div><h3>Containers</h3><p>Docker, Docker Swarm, Kubernetes</p></div>
+      <div><h3>Automation</h3><p>Terraform, Ansible, Rundeck, Bash, Git, GitHub, GitLab</p></div>
+      <div><h3>Monitoring</h3><p>Prometheus, Grafana, Zabbix, ELK, CloudWatch</p></div>
+      <div><h3>Systems</h3><p>Linux, Windows Server, Nginx, Apache, DNS, FTP, security patching</p></div>
+    </div>
+  </section>
+
+  <section id="certs" class="section">
+    <h2>Certificates</h2>
+    <div class="certs">
+      <div class="cert oracle"><span>Oracle</span>Oracle Cloud Infrastructure Certified Architect Associate</div>
+      <div class="cert oracle"><span>Oracle</span>Oracle Cloud Infrastructure Certified Foundations Associate</div>
+      <div class="cert"><span>Certiport</span>IT Specialist, Cloud Computing</div>
+      <div class="cert"><span>Corvit Networks</span>DevOps Engineer</div>
+      <div class="cert"><span>Corvit Networks</span>Network Administrator</div>
+      <div class="cert"><span>TEVTA</span>Cloud Computing</div>
+    </div>
+  </section>
+
+  <section id="contact" class="section contact">
+    <h2>Have a server that needs a steady hand?</h2>
+    <p>I am open to DevOps, cloud and SRE roles.</p>
+    <div class="cta">
+      <a class="btn primary" href="mailto:s.ali.murtaza1@gmail.com">s.ali.murtaza1@gmail.com</a>
+      <a class="btn" href="https://linkedin.com/in/ali-murtaza-bb0941295" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn" href="tel:+923231488347">03231488347</a>
+    </div>
+  </section>
+</main>
+
+<footer>Ali Murtaza, Lahore, Pakistan</footer>
+
+<script>
+document.querySelectorAll('.bars').forEach(function (el) {
+  for (var i = 0; i < +el.dataset.n; i++) {
+    var s = document.createElement('span');
+    s.style.animationDelay = (i * 40) + 'ms';
+    el.appendChild(s);
+  }
+});
+</script>
+</body>
+</html>
