@@ -1,160 +1,124 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Ali Murtaza | DevOps & Cloud Engineer</title>
-<meta name="description" content="Ali Murtaza, DevOps and Cloud Engineer in Lahore. AWS, Azure, OCI, Kubernetes, Terraform, Ansible.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
-</head>
-<body>
-
-<header class="nav">
-  <a class="logo" href="#top">am</a>
-  <nav>
-    <a href="#work">Work</a>
-    <a href="#projects">Projects</a>
-    <a href="#skills">Skills</a>
-    <a href="#certs">Certificates</a>
-    <a class="pill" href="#contact">Contact</a>
-  </nav>
-</header>
-
-<main id="top">
-  <section class="hero">
-    <div class="hero-text">
-      <p class="hello">Ali Murtaza, Lahore</p>
-      <h1>I keep cloud infrastructure up, fast and affordable.</h1>
-      <p class="lead">DevOps and Cloud Engineer running production sites on AWS, Azure and Kubernetes. I automate deployments, watch everything, and fix incidents before users notice.</p>
-      <div class="cta">
-        <a class="btn primary" href="#projects">See my projects</a>
-        <a class="btn" href="mailto:s.ali.murtaza1@gmail.com">Email me</a>
-      </div>
-    </div>
-
-    <aside class="board" aria-label="Sites Ali manages">
-      <div class="board-head"><span>Sites I look after</span><span class="all"><i></i>All systems operational</span></div>
-      <ul>
-        <li><b>quicklly.com</b><div class="bars" data-n="30"></div></li>
-        <li><b>zifiti.com</b><div class="bars" data-n="30"></div></li>
-        <li><b>prominencebank.com</b><div class="bars" data-n="30"></div></li>
-      </ul>
-      <div class="board-foot"><span>30 days ago</span><span>Uptime target 99.9%</span><span>Today</span></div>
-    </aside>
-  </section>
-
-  <section class="stats">
-    <div><strong>40%</strong><span>faster deployments</span></div>
-    <div><strong>20%</strong><span>lower cloud cost</span></div>
-    <div><strong>3</strong><span>production sites, solo on-call</span></div>
-    <div><strong>3</strong><span>cloud platforms: AWS, Azure, OCI</span></div>
-  </section>
-
-  <section id="work" class="section">
-    <h2>Where I work</h2>
-    <div class="timeline">
-      <article>
-        <div class="when">Dec 2024 to now</div>
-        <div>
-          <h3>Junior DevOps Engineer, AdMaxim Private Limited</h3>
-          <ul>
-            <li>Built monitoring and central logging with Zabbix, Prometheus and ELK for fast root cause analysis.</li>
-            <li>Replaced manual server setup and deployments with Ansible playbooks and Rundeck workflows.</li>
-            <li>Run high-availability Linux clusters: security patching, incident response, automated backups and disaster recovery.</li>
-          </ul>
-        </div>
-      </article>
-      <article>
-        <div class="when">Nov 2025 to now</div>
-        <div>
-          <h3>Site Reliability Engineer, Quicklly, Zifiti and Prominence Bank</h3>
-          <ul>
-            <li>Solely responsible for uptime of three major websites, with alerts tuned to catch failures immediately.</li>
-            <li>Primary contact for incidents; ship hotfixes over SSH and maintenance scripts across server clusters.</li>
-          </ul>
-        </div>
-      </article>
-      <article>
-        <div class="when">2020 to 2024</div>
-        <div>
-          <h3>BS Computer Science, University of Central Punjab</h3>
-          <p>Before that, ICS at Punjab College (2018 to 2020).</p>
-        </div>
-      </article>
-    </div>
-  </section>
-
-  <section id="projects" class="section">
-    <h2>Projects</h2>
-    <div class="projects">
-      <article class="project big">
-        <h3>Secure enterprise WordPress</h3>
-        <p class="site">prominencebank.com</p>
-        <p>Hardened Linux host with strict firewall rules. Web and API layers are separated for security and scale. Developers reach servers through OpenVPN, and Teleport records every session for audit.</p>
-        <div class="tags"><span>Linux</span><span>OpenVPN</span><span>Teleport</span><span>Firewall</span></div>
-      </article>
-      <article class="project">
-        <h3>Multi-stack web infrastructure</h3>
-        <p class="site">GHS website</p>
-        <p>Windows Server IIS running Node.js and .NET, with AWS RDS in a private subnet and Redis caching. Bash scripts watch disk, IIS, RAM and CPU before slowdowns hit.</p>
-        <div class="tags"><span>IIS</span><span>AWS RDS</span><span>Redis</span><span>Bash</span></div>
-      </article>
-      <article class="project">
-        <h3>Kubernetes observability suite</h3>
-        <p class="site">Prometheus and Grafana</p>
-        <p>Deployed inside a K8s cluster with custom dashboards for node and pod metrics, so the health of every container is visible.</p>
-        <div class="tags"><span>Kubernetes</span><span>Prometheus</span><span>Grafana</span></div>
-      </article>
-    </div>
-  </section>
-
-  <section id="skills" class="section">
-    <h2>Skills</h2>
-    <div class="skills">
-      <div><h3>Cloud</h3><p>AWS: EC2, ELB, IAM, CloudWatch, EFS, S3, ECR, ECS, RDS, VPC<br>Azure: VMs, App Service, AKS, Blob, SQL, Functions, AD, DevOps<br>Oracle Cloud Infrastructure</p></div>
-      <div><h3>Containers</h3><p>Docker, Docker Swarm, Kubernetes</p></div>
-      <div><h3>Automation</h3><p>Terraform, Ansible, Rundeck, Bash, Git, GitHub, GitLab</p></div>
-      <div><h3>Monitoring</h3><p>Prometheus, Grafana, Zabbix, ELK, CloudWatch</p></div>
-      <div><h3>Systems</h3><p>Linux, Windows Server, Nginx, Apache, DNS, FTP, security patching</p></div>
-    </div>
-  </section>
-
-  <section id="certs" class="section">
-    <h2>Certificates</h2>
-    <div class="certs">
-      <div class="cert oracle"><span>Oracle</span>Oracle Cloud Infrastructure Certified Architect Associate</div>
-      <div class="cert oracle"><span>Oracle</span>Oracle Cloud Infrastructure Certified Foundations Associate</div>
-      <div class="cert"><span>Certiport</span>IT Specialist, Cloud Computing</div>
-      <div class="cert"><span>Corvit Networks</span>DevOps Engineer</div>
-      <div class="cert"><span>Corvit Networks</span>Network Administrator</div>
-      <div class="cert"><span>TEVTA</span>Cloud Computing</div>
-    </div>
-  </section>
-
-  <section id="contact" class="section contact">
-    <h2>Have a server that needs a steady hand?</h2>
-    <p>I am open to DevOps, cloud and SRE roles.</p>
-    <div class="cta">
-      <a class="btn primary" href="mailto:s.ali.murtaza1@gmail.com">s.ali.murtaza1@gmail.com</a>
-      <a class="btn" href="https://linkedin.com/in/ali-murtaza-bb0941295" target="_blank" rel="noopener">LinkedIn</a>
-      <a class="btn" href="tel:+923231488347">03231488347</a>
-    </div>
-  </section>
-</main>
-
-<footer>Ali Murtaza, Lahore, Pakistan</footer>
-
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Admaxim IT Portal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f2f5f8;--card:#fff;--ink:#0d1a2b;--mute:#63728a;--line:#e1e7ef;--acc:#0b9b86;--acc2:#e2f5f1;--warn:#b7791f;--bad:#d64545;--side:#0b1524;--r:14px}
+@media(prefers-color-scheme:dark){:root{--bg:#0a111d;--card:#111b2c;--ink:#e7edf7;--mute:#8797b1;--line:#1e2b42;--acc:#2fd0b6;--acc2:#12312f;--warn:#e2b25a;--bad:#ff7b7b;--side:#060b14}}
+*{box-sizing:border-box}body{margin:0;font:14.5px/1.5 "Plus Jakarta Sans","Segoe UI",system-ui,sans-serif;background:var(--bg);color:var(--ink);display:flex;min-height:100vh}
+aside{width:236px;background:var(--side);color:#a9b7cf;padding:22px 14px;position:sticky;top:0;height:100vh;flex-shrink:0;display:flex;flex-direction:column}
+.brand{display:flex;align-items:center;gap:10px;margin:0 8px 28px;color:#fff;font-weight:800;font-size:20px;letter-spacing:-.4px}.brand img{height:30px}.brand small{display:block;font-size:11px;font-weight:500;color:#7f90ad;letter-spacing:0}
+nav button{display:flex;gap:11px;align-items:center;width:100%;text-align:left;background:0;border:0;color:inherit;font:inherit;font-weight:500;padding:10px 12px;border-radius:10px;cursor:pointer;margin-bottom:3px}
+nav button svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+nav button:hover{background:#ffffff12}nav button.on{background:var(--acc);color:#04211c;font-weight:700}
+nav .n{margin-left:auto;font-size:11px;background:var(--bad);color:#fff;border-radius:99px;padding:0 7px}
+.foot{margin-top:auto;font-size:12px;color:#6d7e9a;padding:0 8px}
+button:focus-visible,input:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+main{flex:1;padding:28px 32px;min-width:0}.top{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:20px}
+.top h2{margin:0;font-size:26px;font-weight:800;letter-spacing:-.6px;flex:1}
+input,.btn{font:inherit;padding:9px 13px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink)}input{min-width:230px}.btn{cursor:pointer;font-weight:600}.btn:hover{border-color:var(--acc)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin-bottom:18px}
+.card,.stat,.person,.dev{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px}.card{margin-bottom:16px}
+.stat b{display:block;font-size:30px;font-weight:800;letter-spacing:-1px;line-height:1.15}.stat span,.msg,.sub{color:var(--mute);font-size:13px}
+.two{display:grid;grid-template-columns:1.1fr 1fr;gap:16px}.donut{display:flex;align-items:center;gap:18px}.donut svg{width:110px;flex-shrink:0}
+.wrap{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow-x:auto}table{border-collapse:collapse;width:100%}
+th,td{text-align:left;padding:11px 15px;border-bottom:1px solid var(--line);white-space:nowrap}th{font-size:12.5px;color:var(--mute);font-weight:600;cursor:pointer;background:color-mix(in srgb,var(--bg) 60%,var(--card))}
+tr:last-child td{border:0}tbody tr:hover{background:var(--acc2)}.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+.tag{display:inline-block;padding:2px 10px;border-radius:99px;font-size:12px;font-weight:600;background:var(--acc2);color:var(--acc)}.tag.bad{color:var(--bad);background:color-mix(in srgb,var(--bad) 13%,transparent)}.tag.warn{color:var(--warn);background:color-mix(in srgb,var(--warn) 15%,transparent)}
+.mono{font-family:ui-monospace,Menlo,monospace;font-size:13px}.av{width:38px;height:38px;border-radius:50%;background:var(--acc2);color:var(--acc);display:grid;place-items:center;font-weight:800;flex-shrink:0}
+.ph{display:flex;gap:12px;align-items:center;margin-bottom:10px}.ph h3{margin:0;font-size:15.5px}.item{padding:7px 0;border-top:1px dashed var(--line);font-size:13.5px}
+.alert{border-left:4px solid var(--warn);padding:10px 14px;margin:8px 0;background:var(--card);border-radius:0 10px 10px 0}.alert.bad{border-color:var(--bad)}
+.ssid{display:flex;gap:8px;align-items:center;padding:6px 0;border-top:1px dashed var(--line);flex-wrap:wrap}.ssid b{font-weight:600}.rv{padding:2px 10px;font-size:12px}
+.row{display:flex;justify-content:space-between;gap:10px;font-size:13.5px;padding:2px 0}.row span:first-child{color:var(--mute)}
+@media(max-width:820px){body{flex-direction:column}aside{width:100%;height:auto;position:static;padding:12px}nav{display:flex;flex-wrap:wrap;gap:4px}nav button{width:auto}.foot{display:none}.brand{margin-bottom:10px}main{padding:16px}.two{grid-template-columns:1fr}input{min-width:0;flex:1}}
+</style></head><body>
+<aside>
+ <div class="brand" id="brand"></div>
+ <nav id="nav"></nav>
+ <div class="foot" id="foot"></div>
+</aside>
+<main><div class="top"><h2 id="title"></h2><input id="q" type="search" placeholder="Search people, serial, IP…" aria-label="Search"><button class="btn" id="exp">Export CSV</button></div>
+<div id="view"></div><p class="msg" id="msg"></p></main>
 <script>
-document.querySelectorAll('.bars').forEach(function (el) {
-  for (var i = 0; i < +el.dataset.n; i++) {
-    var s = document.createElement('span');
-    s.style.animationDelay = (i * 40) + 'ms';
-    el.appendChild(s);
-  }
-});
-</script>
-</body>
-</html>
+/* ============ SETTINGS ============ */
+const SHEET_ID="1iHZ8RfytIB0WZGQDjx3O4hVZye7jOrNYoUttkukQy28";
+const GID={laptops:"0",monitors:"1941019032",network:"713210387"};
+/* Optional but MOST RELIABLE: File > Share > Publish to web > pick each tab > CSV > paste the links here */
+const PUB="https://docs.google.com/spreadsheets/d/e/2PACX-1vQmEnx8zuG9w7gl0G7D7Vud9ZcPHQwfBUu3I72uoHE3EV7r7zOxjbX533vkrCk_BjEh-lo3SkyazxWZ/pub";
+const PUBLISHED={laptops:PUB+"?gid=0&single=true&output=csv",monitors:PUB+"?gid=1941019032&single=true&output=csv",network:PUB+"?gid=713210387&single=true&output=csv"};
+const LOGO_URL="";            // e.g. "logo.png" (put the file next to this html). Empty = text logo
+const ADMIN_PIN="1234", REFRESH_SEC=30;
+/* ================================== */
+const ICON={overview:"M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z",people:"M16 8a4 4 0 1 0-8 0 4 4 0 0 0 8 0zM4 21c0-4 3.5-6 8-6s8 2 8 6",laptops:"M4 5h16v11H4zM2 19h20",monitors:"M3 4h18v12H3zM8 20h8M12 16v4",network:"M2 9a15 15 0 0 1 20 0M5 13a10 10 0 0 1 14 0M8.5 16.5a5 5 0 0 1 7 0M12 20h.01",alerts:"M6 9a6 6 0 0 1 12 0c0 6 2 7 2 7H4s2-1 2-7zM10 20a2 2 0 0 0 4 0"};
+const NAV=[["overview","Overview"],["people","People"],["laptops","Laptops"],["monitors","Monitors"],["network","Network"],["alerts","Alerts"]];
+const SAMPLE={laptops:[["Sr#","Name","DEPT","Dev Type","Make","Model","CPU & Gen","RAM","HDD/SDD","Serial Number","MAC Address","Conditions"],["1","Suleman Khan","MD","MAC Pro 2017","Macbook","15\"","i7","16GB","500GB","C02WF5S0HTD6","","perfect"],["2","Ahmad Raza","QA","Laptop","Lenovo","T470","i7","16GB","SSD 256","CND1205VSG","00:e9:3a:65:d5:51","OK"],["3","Majid Hussain","Proposals","MacBook pro","Apple","A1278","i7 Late 11","8GB","SSD 128","C02GG0JUDV14","","battery issue"]],
+monitors:[["Sr#","Name","DEPT","Make","Model","Size","Status"],["1","Kashif Siddiqui","Development","Samsung","S27C310EAU","27 Inch","OK"]]};
+let D={laptops:[],monitors:[],network:[]},notes=[],view="overview",sortK=null,dir=1,cur=null,live=false;
+const $=s=>document.querySelector(s),esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+function csv(t){const r=[];let w=[],c="",q=0;for(let i=0;i<t.length;i++){const h=t[i];if(q){if(h=='"'){if(t[i+1]=='"'){c+='"';i++}else q=0}else c+=h}else if(h=='"')q=1;else if(h==','){w.push(c);c=""}else if(h=='\n'||h=='\r'){if(h=='\r'&&t[i+1]=='\n')i++;w.push(c);r.push(w);w=[];c=""}else c+=h}if(c||w.length){w.push(c);r.push(w)}return r}
+const ne=r=>r.filter(x=>x&&x.trim()).length;
+function parse(rows,key){const hi=rows.findIndex(r=>ne(r)>=4);if(hi<0)return{data:[],notes:[]};const H=rows[hi].map(x=>(x||"").trim().toLowerCase()),data=[],nt=[];
+ rows.slice(hi+1).forEach(r=>{const n=ne(r);if(!n)return;const t=r.filter(x=>x&&x.trim()).map(x=>x.trim());
+  if(n==1||/^(genr?al note|remarks?)/i.test(t[0])){nt.push({text:t.length>1?t.slice(1).join(" "):t[0]});return}
+  if(n<3)return;const o={};H.forEach((h,i)=>{if(h)o[h]=(r[i]||"").trim()});data.push(o)});return{data,notes:nt}}
+const pick=(o,...k)=>{for(const s of k){const f=Object.keys(o).find(x=>x.includes(s));if(f&&o[f])return o[f]}return""};
+function parseNet(rows){const out=[];let d=null;const c=(r,i)=>(r[i]||"").trim();
+ rows.slice(2).forEach(r=>{if(!ne(r.slice(0,11)))return;
+  if(c(r,0)){d={name:c(r,0),wan:[],lan:[],user:c(r,3),pass:c(r,4),ssids:[],area:c(r,7),mode:c(r,8),status:c(r,9),desc:c(r,10)};out.push(d)}
+  if(!d)return;if(!c(r,0)){if(c(r,3))d.user=d.user||c(r,3);if(c(r,4))d.pass=d.pass||c(r,4)}
+  c(r,1)&&d.wan.push(c(r,1));c(r,2)&&d.lan.push(c(r,2));
+  if(c(r,5)||c(r,6)){const a=c(r,5).split(","),b=c(r,6).split(",");a.forEach((s,i)=>d.ssids.push({ssid:s.trim(),pass:(b.length==a.length?b[i]:c(r,6)).trim()}))}
+  if(c(r,0)&&(c(r,7)||c(r,8)))0;else{c(r,7)&&!d.area&&(d.area=c(r,7));c(r,10)&&!d.desc&&(d.desc=c(r,10))}});return out}
+async function viaFetch(u){const r=await fetch(u);if(!r.ok)throw new Error("HTTP "+r.status);const t=await r.text();if(/^\s*<(!doctype|html)/i.test(t))throw new Error("private sheet (login page)");return csv(t)}
+function viaScript(k){return new Promise((res,rej)=>{const cb="gcb_"+k+Date.now(),el=document.createElement("script"),to=setTimeout(()=>{rej(new Error("no response (sheet not public?)"));el.remove()},8000);
+ window[cb]=d=>{clearTimeout(to);d.status=="ok"?res(d.table.rows.map(r=>r.c.map(c=>c?String(c.f??c.v??""):""))):rej(new Error("gviz: "+(d.errors?.[0]?.message||"error")))};
+ el.onerror=()=>{clearTimeout(to);rej(new Error("script blocked"))};el.src=`https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?gid=${GID[k]}&headers=0&tqx=responseHandler:${cb}`;document.head.appendChild(el)})}
+async function tab(k){const errs=[];
+ for(const f of [()=>viaFetch(PUBLISHED[k]),()=>viaFetch(`https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&gid=${GID[k]}&headers=0`),()=>viaScript(k)]){try{return await f()}catch(e){errs.push(e.message)}}
+ throw new Error(errs.join(" | ")+(location.protocol=="file:"?" — opened as file://; run a local server (see instructions)":""))}
+async function load(){notes=[];const st={};
+ for(const k of ["laptops","monitors","network"]){let rows;try{rows=await tab(k);st[k]="ok"}catch(e){rows=SAMPLE[k]||[];st[k]="FAILED: "+(e.message||"blocked by browser/CORS or sheet not public")}
+  if(k=="network"){D.network=rows.length?parseNet(rows):[];continue}const p=parse(rows,k);D[k]=p.data;notes.push(...p.notes)}
+ D.laptops=D.laptops.map(o=>({sr:pick(o,"sr"),name:pick(o,"name"),dept:pick(o,"dept"),type:pick(o,"dev type","type"),make:pick(o,"make"),model:pick(o,"model"),cpu:pick(o,"cpu"),ram:pick(o,"ram"),disk:pick(o,"hdd","ssd"),serial:pick(o,"serial"),mac:pick(o,"mac"),cond:pick(o,"condition"),date:pick(o,"issue","date")}));
+ D.monitors=D.monitors.map(o=>({name:pick(o,"name"),dept:pick(o,"dept"),make:pick(o,"make"),model:pick(o,"model"),size:pick(o,"size"),status:pick(o,"status")}));
+ const bad=Object.entries(st).filter(e=>e[1]!="ok"),m=$("#msg");
+ m.innerHTML=bad.length?`<b style="color:var(--bad)">Could not read the Google Sheet — showing SAMPLE data.</b><br>${bad.map(e=>e[0]+" → "+esc(e[1])).join("<br>")}<br>Fix: publish each tab (File → Share → Publish to web → CSV) and paste the links in PUBLISHED, or set sharing to “Anyone with the link – Viewer”. Press F12 → Console for details.`:`Live · ${D.laptops.length} laptops, ${D.monitors.length} monitors, ${D.network.length} network devices · updated ${new Date().toLocaleTimeString()}`;render()}
+const shared=n=>!n||/^(it|cctv|inventory)$/i.test(n),na=v=>!v||/^n\/a$/i.test(v);
+function alerts(){const a=[],L=D.laptops,dup=(k)=>{const m={};L.forEach(l=>!na(l[k])&&(m[l[k].toLowerCase()]??=[]).push(l.name||"stock"));return Object.entries(m).filter(e=>e[1].length>1)};
+ L.forEach(l=>{const who=l.name||"Unassigned laptop";if(/(late|mid|early)\s*(0\d|1[0-2])\b|20(0\d|1[0-2])\b/i.test(l.type+" "+l.model+" "+l.cpu))a.push({lvl:"bad",t:`${who}: very old device (${l.type||l.model}) — consider replacing`});
+  if(/issue|problem|battery|faulty|repair|broken/i.test(l.cond))a.push({lvl:"bad",t:`${who}: ${l.cond}`});if(l.name&&!l.serial)a.push({lvl:"warn",t:`${who}: serial number missing`})});
+ dup("serial").forEach(([s,n])=>a.push({lvl:"warn",t:`Duplicate serial ${s.toUpperCase()} on: ${n.join(", ")}`}));dup("mac").forEach(([s,n])=>a.push({lvl:"warn",t:`Duplicate MAC ${s} on: ${n.join(", ")}`}));
+ D.monitors.forEach(m=>!m.make&&a.push({lvl:"warn",t:`Monitor ${m.model||""}: make missing`}));notes.forEach(n=>a.push({lvl:/replace|urgent|faulty|issue/i.test(n.text)?"bad":"warn",t:n.text}));return a}
+const mono=k=>r=>r[k]?`<span class="mono">${esc(r[k])}</span>`:"—";
+function tbl(cols,list,name){const q=$("#q").value.toLowerCase();let l=list.filter(r=>!q||Object.values(r).join(" ").toLowerCase().includes(q));
+ if(sortK)l=[...l].sort((a,b)=>String(a[sortK]||"").localeCompare(String(b[sortK]||""),0,{numeric:1})*dir);cur={cols,l,name};
+ return `<div class="wrap"><table><thead><tr>${cols.map(c=>`<th data-k="${c[0]}">${c[1]}${sortK==c[0]?dir>0?" ▲":" ▼":""}</th>`).join("")}</tr></thead><tbody>${l.map(r=>`<tr>${cols.map(c=>`<td>${c[2]?c[2](r):esc(r[c[0]])||"—"}</td>`).join("")}</tr>`).join("")||`<tr><td colspan="12">No results.</td></tr>`}</tbody></table></div>`}
+const secret=v=>v?`<span class="mono pw" data-p="${esc(v)}">••••••••</span> <button class="btn rv">Show</button>`:"—";
+function render(){const v=$("#view"),q=$("#q").value.toLowerCase(),A=alerts();cur=null;
+ $("#title").textContent=NAV.find(n=>n[0]==view)[1];
+ document.querySelectorAll("#nav button").forEach(b=>b.classList.toggle("on",b.dataset.v==view));$("#nav [data-v=alerts] .n")?.remove();A.length&&$("#nav [data-v=alerts]").insertAdjacentHTML("beforeend",`<span class="n">${A.length}</span>`);
+ if(view=="overview"){const L=D.laptops,as=L.filter(x=>x.name).length,pc=L.length?as/L.length:0,C=2*Math.PI*40,make={};L.forEach(l=>{const k=l.make||"Other";make[k]=(make[k]||0)+1});
+  v.innerHTML=`<div class="stats"><div class="stat"><b>${L.length}</b><span>Laptops</span></div><div class="stat"><b>${as}</b><span>Assigned</span></div><div class="stat"><b>${L.length-as}</b><span>In stock</span></div><div class="stat"><b>${D.monitors.length}</b><span>Monitors</span></div><div class="stat"><b>${D.network.length}</b><span>Network devices</span></div></div>
+  <div class="two"><div class="card donut"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="var(--line)" stroke-width="14"/><circle cx="50" cy="50" r="40" fill="none" stroke="var(--acc)" stroke-width="14" stroke-dasharray="${C*pc} ${C}" transform="rotate(-90 50 50)" stroke-linecap="round"/><text x="50" y="56" text-anchor="middle" font-size="20" font-weight="800" fill="var(--ink)">${Math.round(pc*100)}%</text></svg><div><b>Laptops in use</b><p class="sub">${as} of ${L.length} laptops are assigned.</p>${Object.entries(make).map(([k,n])=>`<div class="row"><span>${esc(k)}</span><b>${n}</b></div>`).join("")}</div></div>
+  <div class="card"><b>Needs attention</b>${A.slice(0,4).map(a=>`<div class="alert ${a.lvl}">${esc(a.t)}</div>`).join("")||"<p class='sub'>Nothing flagged.</p>"}</div></div>`}
+ else if(view=="people"){const m={};const add=(n,d)=>(m[n.toLowerCase()]??={n,d,l:[],m:[]});D.laptops.forEach(l=>l.name&&add(l.name,l.dept).l.push(l));D.monitors.forEach(x=>x.name&&add(x.name,x.dept).m.push(x));
+  const P=Object.values(m).filter(p=>!q||JSON.stringify(p).toLowerCase().includes(q));
+  v.innerHTML=`<div class="grid">${P.map(p=>`<div class="person"><div class="ph"><div class="av">${esc(p.n[0].toUpperCase())}</div><div><h3>${esc(p.n)}</h3><span class="sub">${esc(p.d||(shared(p.n)?"Shared":"—"))}</span></div></div>${p.l.map(l=>`<div class="item"><b>${esc(l.make)} ${esc(l.type||l.model)}</b><br><span class="sub">${esc(l.cpu)} · ${esc(l.ram)} · ${esc(l.disk)}${l.date?" · since "+esc(l.date):""}</span></div>`).join("")}${p.m.map(x=>`<div class="item"><b>Monitor ${esc(x.make)} ${esc(x.model)}</b><br><span class="sub">${esc(x.size)}</span></div>`).join("")}</div>`).join("")||"No results."}</div>`}
+ else if(view=="laptops")v.innerHTML=tbl([["sr","#"],["name","Assigned to",r=>esc(r.name)||'<span class="tag warn">In stock</span>'],["dept","Dept"],["type","Type"],["make","Make"],["model","Model"],["cpu","CPU"],["ram","RAM"],["disk","Storage"],["serial","Serial",mono("serial")],["mac","MAC",mono("mac")],["cond","Condition",r=>r.cond?`<span class="tag ${/issue|battery|problem/i.test(r.cond)?"bad":""}">${esc(r.cond)}</span>`:"—"]],D.laptops,"laptops");
+ else if(view=="monitors")v.innerHTML=tbl([["name","Assigned to"],["dept","Dept"],["make","Make"],["model","Model"],["size","Size"],["status","Status"]],D.monitors,"monitors");
+ else if(view=="network"){const N=D.network.filter(d=>!q||JSON.stringify(d).toLowerCase().includes(q));
+  v.innerHTML=`<p class="sub">Passwords are hidden. Click “Show” and enter the admin PIN to reveal.</p><div class="grid">${N.map(d=>`<div class="dev"><div class="ph"><div><h3>${esc(d.name)}</h3><span class="sub">${esc(d.area)||"—"}</span></div><span class="tag ${/active/i.test(d.status)?"":"warn"}" style="margin-left:auto">${esc(d.status)||"—"}</span></div>
+  ${d.wan.length?`<div class="row"><span>WAN</span><span class="mono">${d.wan.map(esc).join(", ")}</span></div>`:""}${d.lan.length?`<div class="row"><span>LAN</span><span class="mono">${d.lan.map(esc).join(", ")}</span></div>`:""}${d.mode?`<div class="row"><span>Mode</span><span>${esc(d.mode)}</span></div>`:""}
+  ${d.user||d.pass?`<div class="row"><span>Login</span><span class="mono">${esc(d.user)||"—"}</span></div><div class="row"><span>Password</span><span>${secret(d.pass)}</span></div>`:""}
+  ${d.desc?`<p class="sub">${esc(d.desc)}</p>`:""}${d.ssids.map(s=>`<div class="ssid"><b>${esc(s.ssid)}</b>${secret(s.pass)}</div>`).join("")}</div>`).join("")||"No network data."}</div>`}
+ else v.innerHTML=A.map(a=>`<div class="alert ${a.lvl}">${esc(a.t)}</div>`).join("")||"No alerts."}
+$("#brand").innerHTML=(LOGO_URL?`<img src="${LOGO_URL}" alt="Admaxim">`:`<svg width="30" height="30" viewBox="0 0 32 32"><rect width="32" height="32" rx="8" fill="var(--acc)"/><path d="M8 24 16 8l8 16M11.5 19h9" stroke="#04211c" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>`)+`<div>admaxim<small>IT Asset Portal</small></div>`;
+$("#nav").innerHTML=NAV.map(n=>`<button data-v="${n[0]}"><svg viewBox="0 0 24 24"><path d="${ICON[n[0]]}"/></svg>${n[1]}</button>`).join("");
+$("#foot").textContent="Data syncs from Google Sheets every "+REFRESH_SEC+"s";
+$("#nav").onclick=e=>{const b=e.target.closest("button");if(b){view=b.dataset.v;sortK=null;render()}};
+$("#q").oninput=render;
+$("#view").onclick=e=>{const th=e.target.closest("th");if(th){dir=sortK==th.dataset.k?-dir:1;sortK=th.dataset.k;render();return}
+ if(e.target.classList.contains("rv")){const s=e.target.previousElementSibling;if(s.textContent.startsWith("•")){if(prompt("Admin PIN")===ADMIN_PIN){s.textContent=s.dataset.p;e.target.textContent="Hide"}}else{s.textContent="••••••••";e.target.textContent="Show"}}};
+$("#exp").onclick=()=>{if(!cur)return alert("Open Laptops or Monitors first.");const t=[cur.cols.map(x=>x[1]),...cur.l.map(r=>cur.cols.map(x=>r[x[0]]??""))].map(r=>r.map(x=>`"${String(x).replace(/"/g,'""')}"`).join(",")).join("\n");
+ const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([t],{type:"text/csv"}));a.download=cur.name+".csv";a.click()};
+load();setInterval(load,REFRESH_SEC*1000);
+</script></body></html>
