@@ -4,7 +4,8 @@ export const CONFIG = {
   LOGO: "assets/logo.png",
   REFRESH_SEC: 30,
   // Paste the Web App URL from Apps Script (Deploy > Web app). Ends with /exec
-  API_URL: "",
+  API_URL: "https://script.google.com/a/macros/admaxim.com/s/AKfycbwmMhYw53h-ZzSyQ9WeH7aA0Z328eURaow5iq891Qiivp47TXKCH7ZCZWu_zuAQqWYyTA/exec
+",
   STATUSES: ["New", "Pending Approval", "In Progress", "Resolved", "Rejected"],
   // ---- Only used while API_URL is empty (read-only demo through "Publish to web") ----
   SHEET_ID: "1iHZ8RfytIB0WZGQDjx3O4hVZye7jOrNYoUttkukQy28",
