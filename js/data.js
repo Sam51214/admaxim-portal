@@ -31,11 +31,26 @@ function parseNet(rows) {
   });
   return out;
 }
+// any extra tab (Wifi, Backups, ...): auto-detect header, keep every column
+function parseGeneric(rows) {
+  const hi = rows.findIndex((r) => ne(r) >= 3); if (hi < 0) return { cols: [], rows: [], notes: [] };
+  const body = rows.slice(hi + 1), width = Math.max(...rows.map((r) => r.length));
+  const used = [...Array(width).keys()].filter((i) => (rows[hi][i] || "").trim() || body.some((r) => (r[i] || "").trim()));
+  const cols = used.map((i) => (rows[hi][i] || "").trim()), out = [], notes = []; let last = "";
+  body.forEach((r, idx) => {
+    const n = ne(r); if (!n) return;
+    if (n == 1 && !(r[used[0]] || "").trim()) { notes.push(r.find((x) => x && x.trim()).trim()); return; }
+    const o = { _row: hi + 2 + idx };
+    used.forEach((c, k) => { let v = (r[c] || "").trim(); if (k == 0) { if (v) last = v; else v = last; } o["c" + k] = v; }); // fill merged first column
+    out.push(o);
+  });
+  return { cols, rows: out, notes };
+}
 // One mapper per tab. To show a new column: add a field here.
 const MAP = {
   laptops: (o) => ({ _row: o._row, sr: pick(o, "sr"), name: pick(o, "name"), dept: pick(o, "dept"), type: pick(o, "dev type", "type"), make: pick(o, "make"), model: pick(o, "model"), cpu: pick(o, "cpu"), ram: pick(o, "ram"), disk: pick(o, "hdd", "ssd"), serial: pick(o, "serial"), mac: pick(o, "mac"), cond: pick(o, "condition"), date: pick(o, "issue") }),
   monitors: (o) => ({ _row: o._row, name: pick(o, "name"), dept: pick(o, "dept"), make: pick(o, "make"), model: pick(o, "model"), size: pick(o, "size"), status: pick(o, "status") }),
-  tickets: (o) => ({ _row: o._row, id: pick(o, "ticket"), date: pick(o, "date"), from: pick(o, "from"), subject: pick(o, "subject"), link: pick(o, "link"), status: pick(o, "status") || "New", assignee: pick(o, "assigned"), notes: pick(o, "notes") }),
+  tickets: (o) => ({ _row: o._row, id: pick(o, "ticket"), date: pick(o, "date"), from: pick(o, "from"), subject: pick(o, "subject"), link: pick(o, "link"), status: pick(o, "status") || "New", assignee: pick(o, "assigned"), notes: pick(o, "notes"), preview: pick(o, "preview"), cat: pick(o, "category"), pri: pick(o, "priority") }),
 };
 function build(raw) {
   const data = {}, notes = [];
@@ -47,8 +62,12 @@ function build(raw) {
   return { data, notes };
 }
 export async function loadAll() {
-  if (C.API_URL) { const j = await call("read"); return { ...build(j.tabs), errors: {}, users: j.users, logs: j.logs || [] }; }
+  if (C.API_URL) {
+    const j = await call("read"), extra = {};
+    Object.entries(j.extra || {}).forEach(([n, rows]) => (extra[n] = parseGeneric(rows)));
+    return { ...build(j.tabs), errors: {}, users: j.users, logs: j.logs || [], extra };
+  }
   const raw = {}, errors = {};
   await Promise.all(Object.keys(C.TABS).map(async (k) => { try { raw[k] = await legacyTab(k); } catch (e) { errors[k] = e.message; } }));
-  return { ...build(raw), errors, users: [], logs: [] };
+  return { ...build(raw), errors, users: [], logs: [], extra: {} };
 }

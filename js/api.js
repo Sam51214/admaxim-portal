@@ -7,6 +7,7 @@ export const remember = () => sessionStorage.setItem("amx", JSON.stringify({ u: 
 export const forget = () => sessionStorage.removeItem("amx");
 // text/plain avoids a CORS preflight, which Apps Script cannot answer
 export async function call(a, payload = {}) {
+  if (!C.API_URL) throw new Error("Editing is OFF: API_URL is empty in js/config.js");
   const r = await fetch(C.API_URL, { method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify({ u: session.u, p: session.p, a, ...payload }) });
   const j = await r.json();
   if (!j.ok) throw new Error(j.error || "Request failed");

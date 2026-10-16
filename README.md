@@ -18,3 +18,10 @@ Setup
 6. STOP "Publish to web" on the sheet. It is no longer needed.
 After editing Code.gs later: Deploy > Manage deployments > edit > New version.
 Local test: python3 -m http.server 8000
+
+v2.1 notes
+- Wifi / Backups (any extra visible tab) appear automatically in the menu. Password-like columns are blanked for non-admins by the backend.
+- Tickets: newest first. Mail preview, category and priority come from Gmail (syncHelpdesk). For tickets synced earlier run backfillPreviews() in Apps Script (repeat until "Remaining: 0").
+- Ctrl/Cmd+K or "/" searches everything.
+- Roles: viewer = read only, editor = tickets, admin = everything (Users tab).
+- Web App must be deployed with "Who has access: Anyone". A domain-only deployment (URL contains /a/macros/<domain>/) cannot be called from GitHub Pages.

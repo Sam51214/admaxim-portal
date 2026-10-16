@@ -18,3 +18,5 @@ export function csv(t) {
 }
 // first non-empty value whose header contains any of the given words
 export const pick = (o, ...k) => { for (const s of k) { const f = Object.keys(o).find((x) => x.includes(s)); if (f && o[f]) return o[f]; } return ""; };
+// any date text -> milliseconds (0 if unknown)
+export const ts = (d) => { let t = Date.parse(d); if (isNaN(t)) t = Date.parse(String(d).replace(" ", "T")); return isNaN(t) ? 0 : t; };

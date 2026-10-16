@@ -5,6 +5,8 @@ const GID = { laptops: 0, monitors: 1941019032, network: 713210387, tickets: 120
 const STATUSES = ['New', 'Pending Approval', 'In Progress', 'Resolved', 'Rejected'];
 const LABEL = 'Helpdesk';
 const ASSET_TABS = ['laptops', 'monitors'];
+const ADMIN_ONLY_TABS = []; // e.g. ['Backups'] = tabs only admins may see
+const SECRET_RE = /pass|pwd|secret|token|key/i;
 const LEVEL = { viewer: 1, editor: 2, admin: 3 };
 
 // ---------- helpers ----------
@@ -58,10 +60,19 @@ function read(me) {
     if (k == 'network' && me.role != 'admin') v = v.map((r, i) => r.map((c, j) => (i >= 2 && (j == 4 || j == 6)) || j >= 11 ? '' : c)); // hide passwords
     tabs[k] = v;
   });
+  // every other visible tab (Wifi, Backups, ...) is sent as-is; password-like columns are blanked for non-admins
+  const known = Object.keys(GID).map((k) => GID[k]), extra = {};
+  ss().getSheets().forEach((sh) => {
+    const n = sh.getName(); if (['Users', 'Log'].indexOf(n) >= 0 || known.indexOf(sh.getSheetId()) >= 0 || sh.isSheetHidden()) return;
+    if (ADMIN_ONLY_TABS.indexOf(n) >= 0 && me.role != 'admin') return;
+    let v = sh.getDataRange().getDisplayValues();
+    if (me.role != 'admin') { const hr = v.findIndex((r) => r.filter((c) => String(c).trim()).length >= 3), bad = hr < 0 ? [] : v[hr].map((h, j) => (SECRET_RE.test(h) ? j : -1)).filter((j) => j >= 0); v = v.map((r, i) => r.map((c, j) => (i > hr && bad.indexOf(j) >= 0 ? '' : c))); }
+    extra[n] = v;
+  });
   const users = ensure('Users', ['Name', 'PIN', 'Role']).getDataRange().getValues().slice(1).filter((r) => r[0]).map((r) => String(r[0]));
   let logs = [];
   if (me.role == 'admin') { const l = ensure('Log', ['Time', 'User', 'Action', 'Detail']).getDataRange().getDisplayValues().slice(1); logs = l.slice(-100).reverse(); }
-  return { ok: true, user: me.name, role: me.role, users, tabs, logs };
+  return { ok: true, user: me.name, role: me.role, users, tabs, extra, logs };
 }
 
 // ---------- tickets (fixed columns: A id, B date, C from, D subject, E link, F status, G assignee, H notes) ----------
@@ -84,7 +95,7 @@ function addNote(b, me) {
 function addTicket(b, me) {
   const subject = String(b.subject || '').trim(); if (!subject) throw new Error('Subject is required');
   const id = 'M-' + Date.now();
-  sheetByGid(GID.tickets).appendRow([id, now(), b.from || me.name, subject.slice(0, 300), '', 'New', b.assignee || '', '']);
+  sheetByGid(GID.tickets).appendRow([id, now(), b.from || me.name, subject.slice(0, 300), '', 'New', b.assignee || '', '', String(b.preview || '').slice(0, 600), classify(subject + ' ' + (b.preview || '')), isUrgent(subject) ? 'High' : 'Normal']);
   log(me, 'new ticket', id + ': ' + subject); return { ok: true, id };
 }
 
@@ -94,45 +105,75 @@ function headerInfo(sh) {
   if (hr < 0) throw new Error('Header row not found');
   return { v, hr, H: v[hr].map((x) => String(x).toLowerCase().trim()) };
 }
-const colOf = (H, key) => H.findIndex((h) => h && h.indexOf(key) >= 0);
+const colOf = (H, key) => { key = String(key).toLowerCase().trim(); const i = H.indexOf(key); return i >= 0 ? i : H.findIndex((h) => h && h.indexOf(key) >= 0); };
+const SKIP = ['Users', 'Log'];
+// laptops/monitors by name, or any other tab by its gid number (never tickets/network/Users/Log)
+function assetSheet(tab) {
+  if (ASSET_TABS.indexOf(tab) >= 0) return sheetByGid(GID[tab]);
+  const g = Number(tab), sh = tab !== '' && g === g ? sheetByGid(g) : null;
+  if (!sh || Object.keys(GID).some((k) => GID[k] == g) || SKIP.indexOf(sh.getName()) >= 0) throw new Error('Tab not editable');
+  return sh;
+}
 function setFields(sh, row, H, fields) {
   const skipped = [];
   Object.keys(fields).forEach((k) => { const c = colOf(H, k); if (c < 0) skipped.push(k); else sh.getRange(row, c + 1).setValue(fields[k]); });
   return skipped;
 }
 function addRow(b, me) {
-  if (ASSET_TABS.indexOf(b.tab) < 0) throw new Error('Tab not editable');
-  const sh = sheetByGid(GID[b.tab]), { v, hr, H } = headerInfo(sh);
+  const sh = assetSheet(b.tab), { v, hr, H } = headerInfo(sh);
   let last = hr + 1, max = 0; // last numbered row = end of table
   v.forEach((r, i) => { if (i > hr && /^\d+$/.test(String(r[0]).trim())) { last = i + 1; max = Math.max(max, +r[0]); } });
+  if (!max) last = sh.getLastRow();
   sh.insertRowAfter(last); const row = last + 1;
-  const sr = colOf(H, 'sr'); if (sr >= 0) sh.getRange(row, sr + 1).setValue(max + 1);
+  const sr = H.findIndex((h) => /^(sr\b|s\.?\s?no|#$)/.test(h)); if (sr >= 0 && max) sh.getRange(row, sr + 1).setValue(max + 1);
   const skipped = setFields(sh, row, H, b.fields || {});
   log(me, 'add ' + b.tab, JSON.stringify(b.fields).slice(0, 200)); return { ok: true, skipped };
 }
 function updateRow(b, me) {
-  if (ASSET_TABS.indexOf(b.tab) < 0) throw new Error('Tab not editable');
-  const sh = sheetByGid(GID[b.tab]), { hr, H } = headerInfo(sh), row = +b.row;
+  const sh = assetSheet(b.tab), { hr, H } = headerInfo(sh), row = +b.row;
   if (!(row > hr + 1 && row <= sh.getLastRow())) throw new Error('Bad row');
   const skipped = setFields(sh, row, H, b.fields || {});
   log(me, 'edit ' + b.tab, 'row ' + row + ' ' + JSON.stringify(b.fields).slice(0, 200)); return { ok: true, skipped };
 }
 
 // ---------- Gmail -> Tickets (runs every 5 min via trigger) ----------
+const CATS = [['Hardware', /laptop|macbook|mac book|screen|lcd|monitor|keyboard|battery|charger|mouse|display|hardware/i], ['Network', /wi-?fi|internet|network|vpn|\blan\b|router|connection/i], ['Performance', /slow|hang|freez|lag|performance|not respond/i], ['Access', /\baccess\b|password|login|account|permission|locked/i], ['Software', /update|install|software|licen[cs]e|macos|windows|\bapp\b/i], ['New request', /new (laptop|macbook|monitor|mouse|keyboard|device)|request for a new|purchase/i]];
+const classify = (t) => { const c = CATS.find((x) => x[1].test(t)); return c ? c[0] : 'General'; };
+const isUrgent = (t) => /urgent|immediate|asap|critical|emergency/i.test(t);
+function preview(m) {
+  let b = m.getPlainBody() || '';
+  b = b.split(/\r?\n/).filter((l) => !/^\s*>/.test(l)).join('\n');
+  b = b.split(/\n\s*(On .{5,120} wrote:|-----Original Message|From:\s.+@)/)[0];
+  return b.replace(/\s+/g, ' ').trim().slice(0, 600);
+}
 function syncHelpdesk() {
   locked(() => {
     const sh = sheetByGid(GID.tickets), label = GmailApp.getUserLabelByName(LABEL); if (!sh || !label) return;
     const ids = new Set(sh.getRange(1, 1, Math.max(sh.getLastRow(), 1), 1).getValues().flat().map(String));
     label.getThreads(0, 50).reverse().forEach((t) => {
-      const id = t.getId(); if (ids.has(id)) return; const m = t.getMessages()[0];
-      sh.appendRow([id, Utilities.formatDate(m.getDate(), Session.getScriptTimeZone(), 'yyyy-MM-dd HH:mm'), m.getFrom(), m.getSubject(), 'https://mail.google.com/mail/u/0/#inbox/' + id, 'New', '', '']);
+      const id = t.getId(); if (ids.has(id)) return; const m = t.getMessages()[0], p = preview(m), subj = m.getSubject();
+      sh.appendRow([id, Utilities.formatDate(m.getDate(), Session.getScriptTimeZone(), 'yyyy-MM-dd HH:mm'), m.getFrom(), subj, 'https://mail.google.com/mail/u/0/#inbox/' + id, 'New', '', '', p, classify(subj + ' ' + p), isUrgent(subj + ' ' + p) ? 'High' : 'Normal']);
     });
+  });
+}
+// Run ONCE (and again if it says more remain): fills preview/category/priority for tickets that were synced earlier.
+function backfillPreviews() {
+  locked(() => {
+    const sh = sheetByGid(GID.tickets), v = sh.getDataRange().getValues(); let n = 0, left = 0;
+    for (let i = 1; i < v.length; i++) {
+      const id = String(v[i][0]); if (v[i][8] || id.indexOf('M-') == 0) continue;
+      if (n >= 100) { left++; continue; }
+      try { const p = preview(GmailApp.getThreadById(id).getMessages()[0]); sh.getRange(i + 1, 9, 1, 3).setValues([[p, classify(v[i][3] + ' ' + p), isUrgent(v[i][3] + ' ' + p) ? 'High' : 'Normal']]); n++; }
+      catch (e) { sh.getRange(i + 1, 9).setValue('(mail not found)'); }
+    }
+    Logger.log('Filled ' + n + ' tickets. Remaining: ' + left + (left ? ' — run again' : ''));
   });
 }
 // Run ONCE: creates tabs, a first admin user, and the 5-minute trigger.
 function setup() {
   const t = sheetByGid(GID.tickets) || ss().insertSheet('Tickets');
-  if (t.getLastRow() == 0) t.appendRow(['Ticket ID', 'Date', 'From', 'Subject', 'Mail Link', 'Status', 'Assigned To', 'Notes']);
+  if (t.getLastRow() == 0) t.appendRow(['Ticket ID', 'Date', 'From', 'Subject', 'Mail Link', 'Status', 'Assigned To', 'Notes', 'Mail Preview', 'Category', 'Priority']);
+  t.getRange(1, 9, 1, 3).setValues([['Mail Preview', 'Category', 'Priority']]);
   const u = ensure('Users', ['Name', 'PIN', 'Role']); if (u.getLastRow() < 2) u.appendRow(['Admin', 'change-me-123456', 'admin']);
   ensure('Log', ['Time', 'User', 'Action', 'Detail']);
   ScriptApp.getProjectTriggers().filter((x) => x.getHandlerFunction() == 'syncHelpdesk').forEach(ScriptApp.deleteTrigger);
